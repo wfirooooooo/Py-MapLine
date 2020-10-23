@@ -8,6 +8,7 @@ import logging
 import threading
 import traceback
 from optparse import OptionParser
+import codecs
 
 if sys.version_info.major == 2:
     from Queue import Empty, Queue
@@ -192,7 +193,7 @@ if __name__ == '__main__':
     logging.info(u"Loading: %s", module_name)
     module_obj = load_module(module_name)
 
-    with open(input_file) as f:
+    with codecs.open(input_file, encoding='utf-8', errors='ignore') as f:
         for line in f:
             queue.put(line.strip())
 
